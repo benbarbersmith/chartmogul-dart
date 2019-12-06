@@ -7,6 +7,19 @@ class MockHttpClient extends Mock implements http.Client {}
 
 const List<int> successfulStatusCodes = <int>[200, 201, 202, 204];
 
+const Map<int, Type> exceptionsForStatusCodes = <int, Type>{
+  400: ClientException,
+  401: AuthorizationException,
+  402: RequestFailedException,
+  403: RequestFailedException,
+  404: NotFoundException,
+  422: ClientException,
+  429: RateLimitException,
+  500: ServerException,
+  502: ServerException,
+  503: ServerException,
+  504: ServerException,
+};
 
 void main() {
   test(
@@ -37,6 +50,35 @@ void main() {
     ));
   });
 
+  for (final int statusCode in exceptionsForStatusCodes.keys) {
+    final Type exceptionType = exceptionsForStatusCodes[statusCode];
+
+    test('API instance throws an $exceptionType on a $statusCode response',
+        () async {
+      final MockHttpClient mockClient = MockHttpClient();
+      when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
+        (_) => Future<http.Response>.value(
+          http.Response(
+            '{"data": "pong!"}',
+            statusCode,
+            request: http.Request('get', Uri()),
+          ),
+        ),
+      );
+
+      final ChartMogul chartMogul = ChartMogul(
+        accountToken: '',
+        secretKey: '',
+        client: mockClient,
+      );
+
+      // TODO: Test that the exception is of the correct type.
+      expect(
+        () => chartMogul.get<Map<String, dynamic>>(''),
+        throwsException,
+      );
+    });
+  }
 
   for (final int statusCode in successfulStatusCodes) {
     test('API instance does not throw an exception on a $statusCode response',

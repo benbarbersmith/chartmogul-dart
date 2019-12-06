@@ -137,7 +137,7 @@ class ChartMogul {
   ) {
     return <String, String>{
       'Authorization':
-          "Basic '${base64.encode("$accountToken:$secretKey".codeUnits)}'}",
+          "Basic '${base64.encode("$accountToken:$secretKey".codeUnits)}'",
     };
   }
 }

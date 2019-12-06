@@ -14,10 +14,12 @@ class ChartMogul {
   ChartMogul({
     @required String accountToken,
     @required String secretKey,
-  }) : _authHeaders = _constructAuthHeaders(accountToken, secretKey);
+    http.Client client,
+  })  : _authHeaders = _constructAuthHeaders(accountToken, secretKey),
+        _client = client ?? http.Client();
 
-  static const String _baseURL = 'https://api.chartmogul.com';
-  static const String _version = 'v1';
+  static const String apiBaseURL = 'https://api.chartmogul.com';
+  static const String apiVersion = 'v1';
 
   final Map<String, String> _authHeaders;
   final http.Client _client = http.Client();
@@ -96,7 +98,7 @@ class ChartMogul {
     @required String endpoint,
     Map<String, dynamic> body,
   }) async {
-    final String url = '$_baseURL/$_version/$endpoint';
+    final String url = '$apiBaseURL/$apiVersion/$endpoint';
 
     http.Response response;
     switch (verb) {

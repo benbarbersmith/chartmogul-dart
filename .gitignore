@@ -7,3 +7,4 @@ build/
 doc/api/
 pubspec.lock
 tools/.*
+*.code-workspace

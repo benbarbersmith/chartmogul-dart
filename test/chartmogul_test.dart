@@ -11,7 +11,7 @@ const Map<int, Type> exceptionsForStatusCodes = <int, Type>{
   400: ClientException,
   401: AuthorizationException,
   402: RequestFailedException,
-  403: RequestFailedException,
+  403: AuthorizationException,
   404: NotFoundException,
   422: ClientException,
   429: RateLimitException,
@@ -72,11 +72,16 @@ void main() {
         client: mockClient,
       );
 
-      // TODO: Test that the exception is of the correct type.
       expect(
         () => chartMogul.get<Map<String, dynamic>>(''),
         throwsException,
       );
+
+      try {
+        await chartMogul.get<Map<String, dynamic>>('');
+      } catch (e) {
+        expect(e.toString(), contains(exceptionType.toString()));
+      }
     });
   }
 

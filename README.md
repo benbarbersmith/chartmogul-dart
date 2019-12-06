@@ -2,6 +2,23 @@
 
 `chartmogul-dart` provides convenient Dart bindings for [ChartMogul's API](https://dev.chartmogul.com).
 
+## Configuration
+
+To get started, you need to instantiate a ChartMogul client using your credentials. Find them on the [ChartMogul API Credentials page](https://app.chartmogul.com/#/admin/api).
+
+```dart
+final ChartMogul chartmogul = ChartMogul(accountToken: 'YOUR_TOKEN', secretKey: 'YOUR_KEY');
+```
+
+You can the ping service to test everything is working:
+
+```dart
+await chartmogul.ping.authenticateCredentials();
+print('If you can see this, everything worked!');
+```
+
+If there are no exceptions then you're good to go.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/benbarbersmith/chartmogul-dart](https://github.com/benbarbersmith/chartmogul-dart).

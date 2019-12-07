@@ -22,7 +22,7 @@ class ChartMogul {
   static const String apiVersion = 'v1';
 
   final Map<String, String> _authHeaders;
-  final http.Client _client = http.Client();
+  final http.Client _client;
 
   PingService _ping;
 
@@ -35,19 +35,22 @@ class ChartMogul {
     _client.close();
   }
 
-  Future<T> delete<T>(String endpoint) async =>
+  Future<Map<String, dynamic>> delete(String endpoint) async =>
       _sendRequest(verb: 'DELETE', endpoint: endpoint);
 
-  Future<T> get<T>(String endpoint) async =>
+  Future<Map<String, dynamic>> get(String endpoint) async =>
       _sendRequest(verb: 'GET', endpoint: endpoint);
 
-  Future<T> patch<T>(String endpoint, Map<String, dynamic> body) async =>
+  Future<Map<String, dynamic>> patch(
+          String endpoint, Map<String, dynamic> body) async =>
       _sendRequest(verb: 'PATCH', endpoint: endpoint, body: body);
 
-  Future<T> post<T>(String endpoint, Map<String, dynamic> body) =>
+  Future<Map<String, dynamic>> post(
+          String endpoint, Map<String, dynamic> body) =>
       _sendRequest(verb: 'POST', endpoint: endpoint, body: body);
 
-  Future<T> put<T>(String endpoint, Map<String, dynamic> body) =>
+  Future<Map<String, dynamic>> put(
+          String endpoint, Map<String, dynamic> body) =>
       _sendRequest(verb: 'PUT', endpoint: endpoint, body: body);
 
   /// Handles expected ChartMogul API response codes
@@ -93,7 +96,7 @@ class ChartMogul {
     }
   }
 
-  Future<T> _sendRequest<T>({
+  Future<Map<String, dynamic>> _sendRequest({
     @required String verb,
     @required String endpoint,
     Map<String, dynamic> body,
@@ -123,6 +126,11 @@ class ChartMogul {
     }
 
     _handleResponseCode(response);
+
+    if (verb == 'DELETE' && response.body == '') {
+      return <String, dynamic>{};
+    }
+
     try {
       return json.decode(response.body);
     } catch (e) {

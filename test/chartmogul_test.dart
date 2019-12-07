@@ -43,7 +43,7 @@ void main() {
       client: mockClient,
     );
 
-    await chartMogul.get<Map<String, dynamic>>('');
+    await chartMogul.get('');
     verify(mockClient.get(
       any,
       headers: argThat(equals(expectedHeaders), named: 'headers'),
@@ -73,12 +73,12 @@ void main() {
       );
 
       expect(
-        () => chartMogul.get<Map<String, dynamic>>(''),
+        () => chartMogul.get(''),
         throwsException,
       );
 
       try {
-        await chartMogul.get<Map<String, dynamic>>('');
+        await chartMogul.get('');
       } catch (e) {
         expect(e.toString(), contains(exceptionType.toString()));
       }
@@ -105,7 +105,7 @@ void main() {
         client: mockClient,
       );
 
-      await chartMogul.get<Map<String, dynamic>>('');
+      await chartMogul.get('');
       verify(mockClient.get(any, headers: anyNamed('headers')));
     });
   }

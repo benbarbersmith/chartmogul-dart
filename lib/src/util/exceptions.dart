@@ -14,7 +14,7 @@ class ClientException implements Exception {
   String body;
 
   @override
-  String toString() => 'ClientException: $cause, $body';
+  String toString() => 'ClientException: $cause\n\n $body';
 }
 
 class MalformedResponseException implements Exception {

@@ -19,6 +19,21 @@ print('If you can see this, everything worked!');
 
 If there are no exceptions then you're good to go.
 
+## Usage
+
+### Import API
+
+Available methods in Import API:
+
+#### [Data Sources](https://dev.chartmogul.com/docs/data-sources)
+
+```dart
+chartMogul.dataSources.create('In-house billing');
+chartMogul.dataSources.get('ds_5915ee5a-babd-406b-b8ce-d207133fb4cb');
+chartMogul.dataSources.list();
+chartMogul.dataSources.delete('ds_5915ee5a-babd-406b-b8ce-d207133fb4cb');
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/benbarbersmith/chartmogul-dart](https://github.com/benbarbersmith/chartmogul-dart).

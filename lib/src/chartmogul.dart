@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
+import 'services/data_sources.dart';
 import 'services/ping.dart';
 
 class ChartMogul {
@@ -25,6 +26,12 @@ class ChartMogul {
   final http.Client _client;
 
   PingService _ping;
+  DataSourcesService _dataSources;
+
+  DataSourcesService get dataSources {
+    _dataSources ??= DataSourcesService(this);
+    return _dataSources;
+  }
 
   PingService get ping {
     _ping ??= PingService(this);

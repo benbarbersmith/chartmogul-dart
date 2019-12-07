@@ -22,7 +22,7 @@ To get started, you need to instantiate a ChartMogul client using your credentia
 final ChartMogul chartmogul = ChartMogul(accountToken: 'YOUR_TOKEN', secretKey: 'YOUR_KEY');
 ```
 
-You can the ping service to test everything is working:
+You can use the ping service to test everything is working:
 
 ```dart
 await chartmogul.ping.authenticateCredentials();

@@ -2,6 +2,18 @@
 
 `chartmogul-dart` provides convenient Dart bindings for [ChartMogul's API](https://dev.chartmogul.com).
 
+----
+
+## Table of Contents
+
+* [Configuration](#configuration)
+* [Usage](#usage)
+* [Development](#development)
+* [Contributing](#contributing)
+* [License](#license)
+
+----
+
 ## Configuration
 
 To get started, you need to instantiate a ChartMogul client using your credentials. Find them on the [ChartMogul API Credentials page](https://app.chartmogul.com/#/admin/api).
@@ -33,6 +45,20 @@ chartMogul.dataSources.get('ds_5915ee5a-babd-406b-b8ce-d207133fb4cb');
 chartMogul.dataSources.list();
 chartMogul.dataSources.delete('ds_5915ee5a-babd-406b-b8ce-d207133fb4cb');
 ```
+
+
+## Development
+
+To work on the library:
+
+* Fork it
+* Create your feature branch (`git checkout -b my-new-feature`)
+* Install dependencies: `pub get`
+* Fix bugs or add features, making sure the changes pass the linter (use `dartanalyzer`)
+* Write tests for your new features, using `mockito` for HTTP mocking
+* Run tests with `pub run test`
+* If all tests are passed, push to the branch (`git push origin my-new-feature`)
+* Create a new Pull Request
 
 ## Contributing
 

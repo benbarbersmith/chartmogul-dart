@@ -1,12 +1,13 @@
 analyzer:
   strong-mode:
-    implicit-dynamic: false
+    implicit-dynamic: true
   errors:
     # treat missing required parameters as a warning (not a hint)
     missing_required_param: warning
     # treat missing returns as a warning (not a hint)
     missing_return: warning
   exclude:
+    - lib/src/**.g.dart
 
 include: package:pedantic/analysis_options.yaml
 

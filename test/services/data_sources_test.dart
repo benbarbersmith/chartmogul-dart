@@ -1,5 +1,4 @@
 import 'package:chartmogul/chartmogul.dart';
-import 'package:chartmogul/src/models/data_source.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

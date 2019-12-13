@@ -22,7 +22,7 @@ class DataSourcesService implements Service {
       _endpoint,
       <String, dynamic>{'name': name},
     );
-    return DataSource.fromMap(response);
+    return DataSource.fromJson(response);
   }
 
   /// Get an existing Data Source.
@@ -30,7 +30,7 @@ class DataSourcesService implements Service {
   /// API docs: https://dev.chartmogul.com/reference#retrieve-a-data-source
   Future<DataSource> get(String uuid) async {
     final Map<String, dynamic> response = await client.get('$_endpoint/$uuid');
-    return DataSource.fromMap(response);
+    return DataSource.fromJson(response);
   }
 
   /// Delete an existing Data Source.
@@ -64,7 +64,7 @@ class DataSourcesService implements Service {
       );
     }
     return response['data_sources']
-        .map<DataSource>((dynamic map) => DataSource.fromMap(map))
+        .map<DataSource>((dynamic map) => DataSource.fromJson(map))
         .toList();
   }
 }

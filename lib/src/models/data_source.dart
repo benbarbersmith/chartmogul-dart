@@ -1,6 +1,6 @@
 /// Object to represent a ChartMogul Data Source.
 ///
-/// Example data source JSON:
+/// Example Data Source JSON:
 ///
 /// {
 ///     "uuid": "ds_fef05d54-47b4-431b-aed2-eb6b9e545430",
@@ -10,9 +10,15 @@
 ///     "status": "idle"
 /// }
 class DataSource {
-  DataSource({this.name, this.uuid, this.system, this.createdAt, this.status});
+  const DataSource({
+    this.name,
+    this.uuid,
+    this.system,
+    this.createdAt,
+    this.status,
+  });
 
-  DataSource.fromMap(Map<String, dynamic> map)
+  DataSource.fromJson(Map<String, dynamic> map)
       : assert(map.containsKey('uuid')),
         assert(map.containsKey('name')),
         assert(map.containsKey('system')),

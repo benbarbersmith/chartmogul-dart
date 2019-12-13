@@ -11,7 +11,7 @@ const Map<String, dynamic> map = <String, dynamic>{
 
 void main() {
   test('DataSource can be created from expected JSON', () {
-    final DataSource dataSource = DataSource.fromMap(map);
+    final DataSource dataSource = DataSource.fromJson(map);
 
     expect(dataSource.name, equals(map['name']));
     expect(dataSource.uuid, equals(map['uuid']));
@@ -34,7 +34,7 @@ void main() {
       final Map<String, dynamic> testMap = Map<String, dynamic>.from(map);
       testMap['status'] = statusString;
 
-      final DataSource dataSource = DataSource.fromMap(testMap);
+      final DataSource dataSource = DataSource.fromJson(testMap);
       expect(dataSource.status, equals(statusStringMapping[statusString]));
     }
   });

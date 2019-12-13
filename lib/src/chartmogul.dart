@@ -4,8 +4,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
+import 'services/customers.dart';
 import 'services/data_sources.dart';
 import 'services/ping.dart';
+import 'util/exceptions.dart';
 
 class ChartMogul {
   /// Creates a new [ChartMogul] API client.
@@ -19,6 +21,8 @@ class ChartMogul {
   })  : _authHeaders = _constructAuthHeaders(accountToken, secretKey),
         _client = client ?? http.Client();
 
+  static const String scheme = 'https';
+  static const String host = 'api.chartmogul.com';
   static const String apiBaseURL = 'https://api.chartmogul.com';
   static const String apiVersion = 'v1';
 
@@ -27,6 +31,12 @@ class ChartMogul {
 
   PingService _ping;
   DataSourcesService _dataSources;
+  CustomersService _customers;
+
+  CustomersService get customers {
+    _customers ??= CustomersService(this);
+    return _customers;
+  }
 
   DataSourcesService get dataSources {
     _dataSources ??= DataSourcesService(this);
@@ -45,8 +55,10 @@ class ChartMogul {
   Future<Map<String, dynamic>> delete(String endpoint) async =>
       _sendRequest(verb: 'DELETE', endpoint: endpoint);
 
-  Future<Map<String, dynamic>> get(String endpoint) async =>
-      _sendRequest(verb: 'GET', endpoint: endpoint);
+  Future<Map<String, dynamic>> get(String endpoint,
+          {Map<String, dynamic> queryParameters}) async =>
+      _sendRequest(
+          verb: 'GET', endpoint: endpoint, queryParameters: queryParameters);
 
   Future<Map<String, dynamic>> patch(
           String endpoint, Map<String, dynamic> body) async =>
@@ -107,8 +119,14 @@ class ChartMogul {
     @required String verb,
     @required String endpoint,
     Map<String, dynamic> body,
+    Map<String, dynamic> queryParameters,
   }) async {
-    final String url = '$apiBaseURL/$apiVersion/$endpoint';
+    final String url = Uri(
+            scheme: scheme,
+            host: host,
+            path: '$apiVersion/$endpoint',
+            queryParameters: queryParameters)
+        .toString();
 
     http.Response response;
     switch (verb) {

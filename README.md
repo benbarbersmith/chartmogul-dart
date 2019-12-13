@@ -46,6 +46,49 @@ chartMogul.dataSources.list();
 chartMogul.dataSources.delete('ds_5915ee5a-babd-406b-b8ce-d207133fb4cb');
 ```
 
+#### [Customers](https://dev.chartmogul.com/docs/customers)
+
+```dart
+chartMogul.customers.create(
+  externalId: 'cus_0001',
+  name: 'Adam Smith',
+  dataSourceUuid: 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430',
+  email: 'adam@smith.com',
+  address: const Address(city: 'New York', country: 'US'),
+  leadCreatedAt: DateTime.parse('2015-10-14T00:00:00Z'),
+  freeTrialStartedAt: DateTime.now(),
+  customAttributes: <CustomAttribute>[
+    CustomAttribute(key: 'channel', value: 'Facebook', source: 'Integration'),
+    CustomAttribute(key: 'age', value: 18),
+  ],
+  tags: <String>['important', 'Prio1'],
+);
+
+chartMogul.customers.update(
+  uuid: 'cus_5915ee5a-babd-406b-b8ce-d207133fb4cb',
+  address: const Address(
+    city: 'San Francisco',
+    country: 'US',
+    state: 'CA',
+  ),
+  leadCreatedAt: DateTime.parse('2015-01-01 00:00:00'),
+  freeTrialStartedAt: DateTime.parse('2015-06-13 15:45:13'),
+  customerAttributes: CustomerAttributes(
+    tags: <String>['high-value'],
+    custom: <String, dynamic>{
+      'CAC': 25,
+      'channel': <String, dynamic>{
+        'value': 'Twitter',
+        'source': 'integration2',
+      },
+    },
+  ),
+);
+
+chartMogul.customers.list(page: 2, perPage: 20);
+chartMogul.customers.get('cus_5915ee5a-babd-406b-b8ce-d207133fb4cb');
+chartMogul.customers.delete('cus_5915ee5a-babd-406b-b8ce-d207133fb4cb');
+```
 
 ## Development
 

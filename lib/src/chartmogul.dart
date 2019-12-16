@@ -8,6 +8,7 @@ import 'services/customers.dart';
 import 'services/data_sources.dart';
 import 'services/ping.dart';
 import 'services/plans.dart';
+import 'services/subscriptions.dart';
 import 'util/exceptions.dart';
 
 class ChartMogul {
@@ -34,6 +35,7 @@ class ChartMogul {
   DataSourcesService _dataSources;
   CustomersService _customers;
   PlansService _plans;
+  SubscriptionsService _subscriptions;
 
   CustomersService get customers {
     _customers ??= CustomersService(this);
@@ -53,6 +55,11 @@ class ChartMogul {
   PlansService get plans {
     _plans ??= PlansService(this);
     return _plans;
+  }
+
+  SubscriptionsService get subscriptions {
+    _subscriptions ??= SubscriptionsService(this);
+    return _subscriptions;
   }
 
   void dispose() {

@@ -113,6 +113,30 @@ chartMogul.plans.list(page: 2, perPage: 20);
 chartMogul.plans.get('pl_eed05d54-75b4-431b-adb2-eb6b9e543206');
 chartMogul.plans.delete('pl_eed05d54-75b4-431b-adb2-eb6b9e543206');
 ```
+
+#### [Subscriptions](https://dev.chartmogul.com/docs/subscriptions)
+
+```dart
+chartMogul.subscriptions.list(
+  customerUuid: 'cus_f466e33d-ff2b-4a11-8f85-417eb02157a7',
+  perPage: 2,
+  page: 3,
+);
+
+chartMogul.subscriptions.cancel(
+  uuid: 'sub_e6bc5407-e258-4de0-bb43-61faaf062035',
+  cancelledAt: DateTime.now(),
+);
+
+chartMogul.subscriptions.cancel(
+  uuid: 'sub_e6bc5407-e258-4de0-bb43-61faaf062035',
+  cancellationDates: <DateTime>[
+    DateTime.now(),
+    DateTime.fromMillisecondsSinceEpoch(1576513420)
+  ],
+);
+```
+
 ## Development
 
 To work on the library:

@@ -181,7 +181,7 @@ class CustomerResults {
   factory CustomerResults.fromJson(Map<String, dynamic> json) =>
       _$CustomerResultsFromJson(json);
 
-  /// An array of customer objects with the following data:
+  /// An array of customer objects from the API.
   final List<Customer> entries;
 
   /// The number of results in this response.

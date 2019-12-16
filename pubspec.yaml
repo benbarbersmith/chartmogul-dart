@@ -3,7 +3,7 @@ description: A high-level ChartMogul API Dart Client
 author: Benjamin Barbersmith <ben@barbersmith.com>
 homepage: https://www.github.com/benbarbersmith/chartmogul-dart
 repository: https://www.github.com/benbarbersmith/chartmogul-dart
-version: 0.0.3
+version: 0.0.4
 
 environment:
   sdk: ">=2.3.0 <3.0.0"

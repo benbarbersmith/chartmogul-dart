@@ -7,6 +7,7 @@ import 'package:meta/meta.dart';
 import 'services/customers.dart';
 import 'services/data_sources.dart';
 import 'services/ping.dart';
+import 'services/plans.dart';
 import 'util/exceptions.dart';
 
 class ChartMogul {
@@ -32,6 +33,7 @@ class ChartMogul {
   PingService _ping;
   DataSourcesService _dataSources;
   CustomersService _customers;
+  PlansService _plans;
 
   CustomersService get customers {
     _customers ??= CustomersService(this);
@@ -46,6 +48,11 @@ class ChartMogul {
   PingService get ping {
     _ping ??= PingService(this);
     return _ping;
+  }
+
+  PlansService get plans {
+    _plans ??= PlansService(this);
+    return _plans;
   }
 
   void dispose() {

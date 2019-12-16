@@ -90,6 +90,29 @@ chartMogul.customers.get('cus_5915ee5a-babd-406b-b8ce-d207133fb4cb');
 chartMogul.customers.delete('cus_5915ee5a-babd-406b-b8ce-d207133fb4cb');
 ```
 
+
+#### [Plans](https://dev.chartmogul.com/docs/plans)
+
+```dart
+chartMogul.plans.create(
+  externalId: 'plan_0001',
+  name: 'Bronze Plan',
+  dataSourceUuid: 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430',
+  intervalCount: 1,
+  intervalUnit: 'month',
+);
+
+chartMogul.plans.update(
+  uuid: 'pl_eed05d54-75b4-431b-adb2-eb6b9e543206',
+  name: 'Bronze Monthly Plan',
+  intervalCount: 1,
+  intervalUnit: 'month',
+);
+
+chartMogul.plans.list(page: 2, perPage: 20);
+chartMogul.plans.get('pl_eed05d54-75b4-431b-adb2-eb6b9e543206');
+chartMogul.plans.delete('pl_eed05d54-75b4-431b-adb2-eb6b9e543206');
+```
 ## Development
 
 To work on the library:

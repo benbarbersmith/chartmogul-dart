@@ -1,9 +1,9 @@
-import 'package:chartmogul/src/models/address.dart';
-import 'package:chartmogul/src/models/customer_attributes.dart';
 import 'package:meta/meta.dart';
 
 import '../chartmogul.dart';
+import '../models/address.dart';
 import '../models/customer.dart';
+import '../models/customer_attributes.dart';
 import '../util/exceptions.dart';
 import '../util/service.dart';
 

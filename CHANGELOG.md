@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.5
+
+Add support for Invoices and Transactions endpoints from the Import API.
+
 ## 0.0.4
 
 Add support for Plans and Subscriptions endpoints from the Import API.

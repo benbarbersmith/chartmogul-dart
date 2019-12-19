@@ -6,9 +6,11 @@ import 'package:meta/meta.dart';
 
 import 'services/customers.dart';
 import 'services/data_sources.dart';
+import 'services/invoices.dart';
 import 'services/ping.dart';
 import 'services/plans.dart';
 import 'services/subscriptions.dart';
+import 'services/transactions.dart';
 import 'util/exceptions.dart';
 
 class ChartMogul {

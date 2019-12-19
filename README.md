@@ -114,6 +114,75 @@ chartMogul.plans.get('pl_eed05d54-75b4-431b-adb2-eb6b9e543206');
 chartMogul.plans.delete('pl_eed05d54-75b4-431b-adb2-eb6b9e543206');
 ```
 
+#### [Invoices](https://dev.chartmogul.com/docs/invoices)
+
+```dart
+final List<Invoice> invoices = <Invoice>[
+  Invoice(
+    externalId: 'INV0001',
+    currency: 'USD',
+    date: DateTime.parse('2015-11-01 00:00:00'),
+    dueDate: DateTime.parse('2015-11-15 00:00:00'),
+    lineItems: <LineItem>[
+      LineItem(
+        type: LineItemType.subscription,
+        subscriptionExternalId: 'sub_0001',
+        subscriptionSetExternalId: 'set_0001',
+        planUuid: 'pl_eed05d54-75b4-431b-adb2-eb6b9e543206',
+        servicePeriodStart: DateTime.parse('2015-11-01 00:00:00'),
+        servicePeriodEnd: DateTime.parse('2015-12-01 00:00:00'),
+        amountInCents: 5000,
+        quantity: 1,
+        discountCode: 'PSO86',
+        discountAmountInCents: 1000,
+        taxAmountInCents: 900,
+        transactionFeesInCents: 200,
+      ),
+      const LineItem(
+        type: LineItemType.one_time,
+        description: 'Setup Fees',
+        amountInCents: 2500,
+        quantity: 1,
+        discountCode: 'PSO86',
+        discountAmountInCents: 500,
+        taxAmountInCents: 450,
+      )
+    ],
+    transactions: <Transaction>[
+      Transaction(
+        date: DateTime.parse('2015-11-05 00:14:23'),
+        type: TransactionType.payment,
+        result: TransactionResult.successful,
+      )
+    ],
+  ),
+];
+
+chartMogul.invoices.import(
+    customerUuid: 'cus_5915ee5a-babd-406b-b8ce-d207133fb4cb',
+    invoices: invoices,
+  );
+chartMogul.invoices.list(page: 2, perPage: 20);
+chartMogul.invoices.listForCustomer(
+  customerUuid: 'cus_5915ee5a-babd-406b-b8ce-d207133fb4cb',
+  page: 2,
+  perPage: 20,
+);
+chartMogul.invoices.get('inv_ee325d54-7ab4-421b-cdb2-eb6b9e546034');
+chartMogul.invoices.delete('inv_ee325d54-7ab4-421b-cdb2-eb6b9e546034');
+```
+
+#### [Transactions](https://dev.chartmogul.com/docs/transactions)
+
+```dart
+chartMogul.transactions.import(
+  invoiceUuid: 'inv_ee325d54-7ab4-421b-cdb2-eb6b9e546034',
+  date: DateTime.now(),
+  type: TransactionType.payment,
+  result: TransactionResult.successful,
+);
+```
+
 #### [Subscriptions](https://dev.chartmogul.com/docs/subscriptions)
 
 ```dart

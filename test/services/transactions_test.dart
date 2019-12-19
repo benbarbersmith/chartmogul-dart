@@ -21,8 +21,9 @@ void main() {
     const String dateString = '2015-12-25T18:10:00.000Z';
     final DateTime date = DateTime.parse(dateString);
 
-    when(mockClient.get(
+    when(mockClient.post(
       url,
+      body: anyNamed('body'),
       headers: anyNamed('headers'),
     )).thenAnswer((_) => Future<http.Response>.value(http.Response('''{
   "uuid": "tr_325e460a-1bec-41bb-986e-665e38a1e4cd",
@@ -39,7 +40,16 @@ void main() {
       date: date,
     );
 
-    verify(mockClient.get(url, headers: anyNamed('headers')));
+    verify(mockClient.post(url,
+        body: argThat(
+            equals(<String, dynamic>{
+              'date': date,
+              'type': 'refund',
+              'result': 'successful'
+            }),
+            named: 'body'),
+        headers: anyNamed('headers')));
+
     expect(transaction.uuid, equals('tr_325e460a-1bec-41bb-986e-665e38a1e4cd'));
     expect(transaction.externalId, isNull);
     expect(transaction.type, equals(TransactionType.refund));

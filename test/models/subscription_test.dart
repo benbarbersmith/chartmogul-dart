@@ -23,7 +23,7 @@ void main() {
     expect(subscription.dataSourceUuid, equals(map['data_source_uuid']));
   });
 
-  test('Valid JSON can be created from plan', () {
+  test('Valid JSON can be created from Subscription', () {
     final Subscription subscription = Subscription.fromJson(map);
     final Map<String, dynamic> json = subscription.toJson();
 

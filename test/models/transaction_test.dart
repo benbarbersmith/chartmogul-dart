@@ -20,7 +20,7 @@ void main() {
     expect(transaction.date, equals(DateTime.parse(map['date'])));
   });
 
-  test('Valid JSON can be created from plan', () {
+  test('Valid JSON can be created from Transaction', () {
     final Transaction transaction = Transaction.fromJson(map);
     final Map<String, dynamic> json = transaction.toJson();
 
